@@ -1,0 +1,7 @@
+ÑµÁ·£ºcrf_learn template train.data model1
+²âÊÔ£ºcrf_test -m model1 test.data > output.txt
+
+
+
+crf_learn template train.data model1
+crf_test -m model1 test.data > output.txt
