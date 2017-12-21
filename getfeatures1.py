@@ -23,6 +23,11 @@ def get_features(row_data):
                     num +=1
                 except:
                     pass
+        if 5 < num < 10:
+            return 'halfnum' 
+        if num > 10:
+            return 'manynum'
+        
         if num == 0: 
             return 'str'
         elif num / total < 0.3:
@@ -79,8 +84,9 @@ def get_features(row_data):
         count = 0
         for i in row_data:
             if i == '':
-                count += 1	
-        if count/total > 0.8 and (total - count) < 5:
+                count += 1	# count 为空值的数量
+        #if count/total > 0.8 and (total - count) < 5:
+        if (count/total > 0.8 and (total - count) < 5) or total - count == 1:
             return 'sparse'
         elif count/total > 0.4:
             return 'normal'

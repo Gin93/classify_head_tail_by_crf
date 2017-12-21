@@ -140,8 +140,14 @@ def split(l):
     
     if len (output)> 1:
         if final_check(output[-1]):
-            output[-2] = output[-2] + output[-1]
+            print('final_check_issues')
+            #设置为最后一个表的最后一个分类结果 4 or 5
+            last = output[-2][-1][1]
+            last = '5'
+            for a1,a2 in output[-1]:
+                output[-2] = output[-2] + [[a1,last]]
             output.pop(-1)
+
     
     return output
 
