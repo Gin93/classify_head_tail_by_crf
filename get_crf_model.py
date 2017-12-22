@@ -39,7 +39,7 @@ for files in all_files: #读取逐个文件
             #...'trash'来忽略掉该行数据      
             if label != 'trash':         # 只对有abcd标记的行进行操作          
                 row_data.pop(0) # 删除掉label（abcd），只保留数据
-                if  empty (row_data):    #只对非空数据进行操作	
+                if  not empty (row_data):    #只对非空数据进行操作	
                     features = get_features(row_data) #获取特征值
                     tem_list.append(row_count)
                     tem_list.append(features)

@@ -42,8 +42,8 @@ def dirlist(path, allfile):
 def empty(row_data):
     for i in row_data:
         if i != '':
-            return True
-    return False
+            return False
+    return True
   
 def confusion_matrix_plot_matplotlib(y_truth, y_predict, cmap=plt.cm.Blues):
     """Matplotlib绘制混淆矩阵图
@@ -140,8 +140,50 @@ def split(l):
     
     if len (output)> 1:
         if final_check(output[-1]):
-            output[-2] = output[-2] + output[-1]
+            print('final_check_issues')
+            #设置为最后一个表的最后一个分类结果 4 or 5
+            last = output[-2][-1][1]
+            last = '5'
+            for a1,a2 in output[-1]:
+                print(a1,a2)
+                output[-2] = output[-2] + [[a1,last]]
             output.pop(-1)
+
+    
+    return output
+
+def split1(l):
+    '''
+    输入为一个一维list [label1,l2,l2,l3]
+    输出为拆分过后的表,一个二维数组 即[[l1,l2,l3],[l4,l5,l6]] l1,l2,l3 是一个表, 其余三个为另一个表
+    '''
+    output = []
+    tem_list = []    
+    
+    max = 0
+    for i in l:
+        b = int(i)
+        
+        if b >= max:
+            tem_list.append(i)
+            max = b
+        else: #出现第二个表，把第一个表存起来,清空list,并且存入当前的label
+            output.append(tem_list)
+            tem_list = []
+            tem_list.append(i)
+            max = 0
+    output.append(tem_list)
+    
+    if len (output)> 1:
+        if '4' not in output[-1]:  #可以做一波修改
+            print('final_check_issues')
+            #设置为最后一个表的最后一个分类结果 4 or 5
+            last = output[-2][-1]
+            last = '5'
+            for a1 in output[-1]:
+                output[-2].append(last)
+            output.pop(-1)
+
     
     return output
 

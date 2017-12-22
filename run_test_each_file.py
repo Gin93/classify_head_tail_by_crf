@@ -20,7 +20,7 @@ import os
 num_features = 5
 train_data_path = 'C:/Users/cisdi/Desktop/train_data/'
 #test_data_path = 'C:/Users/cisdi/Desktop/test_data/'
-test_data_path = 'C:/Users/cisdi/Desktop/test_data/'
+test_data_path = 'C:/Users/cisdi/Desktop/testxxx/'
 output_path = 'C:/Users/cisdi/Desktop/output/'
 crf_path = 'C:/Users/cisdi/Desktop/crf++0.58/'
 file_count = 0
@@ -65,7 +65,7 @@ for files in all_files: #读取逐个文件
                 if label != 'trash': 
                     
                     row_data.pop(0) #删除掉label，只保留数据
-                    if  empty (row_data):
+                    if  not empty (row_data):
     				
                         features = get_features(row_data)
                         tem_list.append(row_count)
@@ -145,7 +145,7 @@ for files in all_files: #读取逐个文件
 confusion_matrix_plot_matplotlib(actual, predict)
 df=pandas.DataFrame(classfication_results,columns=['ID','f1','f2','f3','f4','f5','actual','predict']) 
 correct=df[df.actual==df.predict]
-for i in ('overview','attribute','data','tail'):
+for i in ('1','2','4','5'):
     R=sum(correct.predict==i)/sum(df.actual==i)
     P=sum(correct.predict==i)/sum(df.predict==i)
     F=R*P*2/(R+P)
